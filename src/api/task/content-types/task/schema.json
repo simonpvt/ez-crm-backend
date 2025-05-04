@@ -27,8 +27,11 @@
       "enum": [
         "to_do",
         "in_progress",
-        "finished"
-      ]
+        "completed",
+        "cancelled"
+      ],
+      "default": "to_do",
+      "required": true
     },
     "priority": {
       "type": "enumeration",
@@ -36,7 +39,9 @@
         "low",
         "medium",
         "high"
-      ]
+      ],
+      "default": "low",
+      "required": true
     },
     "documents": {
       "type": "media",

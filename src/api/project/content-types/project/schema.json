@@ -21,11 +21,13 @@
     "projectStatus": {
       "type": "enumeration",
       "enum": [
-        "finished",
+        "completed",
         "in_progress",
         "waiting",
         "canceled"
-      ]
+      ],
+      "required": true,
+      "default": "in_progress"
     },
     "startDate": {
       "type": "datetime",

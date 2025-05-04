@@ -569,8 +569,10 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       'api::opportunity.opportunity'
     >;
     projectStatus: Schema.Attribute.Enumeration<
-      ['finished', 'in_progress', 'waiting', 'canceled']
-    >;
+      ['completed', 'in_progress', 'waiting', 'canceled']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'in_progress'>;
     publishedAt: Schema.Attribute.DateTime;
     startDate: Schema.Attribute.DateTime & Schema.Attribute.Required;
     tasks: Schema.Attribute.Relation<'oneToMany', 'api::task.task'>;
@@ -606,12 +608,16 @@ export interface ApiTaskTask extends Struct.CollectionTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::task.task'> &
       Schema.Attribute.Private;
-    priority: Schema.Attribute.Enumeration<['low', 'medium', 'high']>;
+    priority: Schema.Attribute.Enumeration<['low', 'medium', 'high']> &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'low'>;
     project: Schema.Attribute.Relation<'manyToOne', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
     taskStatus: Schema.Attribute.Enumeration<
-      ['to_do', 'in_progress', 'finished']
-    >;
+      ['to_do', 'in_progress', 'completed', 'cancelled']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'to_do'>;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
