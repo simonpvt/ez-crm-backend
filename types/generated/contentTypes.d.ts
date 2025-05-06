@@ -569,7 +569,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       'api::opportunity.opportunity'
     >;
     projectStatus: Schema.Attribute.Enumeration<
-      ['completed', 'in_progress', 'waiting', 'canceled']
+      ['completed', 'in_progress', 'waiting', 'cancelled']
     > &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'in_progress'>;

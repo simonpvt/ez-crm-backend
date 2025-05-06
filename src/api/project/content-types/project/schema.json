@@ -24,7 +24,7 @@
         "completed",
         "in_progress",
         "waiting",
-        "canceled"
+        "cancelled"
       ],
       "required": true,
       "default": "in_progress"

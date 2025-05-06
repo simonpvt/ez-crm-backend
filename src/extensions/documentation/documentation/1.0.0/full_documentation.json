@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-05-05T22:44:40.891Z"
+    "x-generation-date": "2025-05-06T14:26:00.878Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -4832,7 +4832,7 @@
                               "completed",
                               "in_progress",
                               "waiting",
-                              "canceled"
+                              "cancelled"
                             ]
                           },
                           "startDate": {
@@ -6611,7 +6611,7 @@
                                 "completed",
                                 "in_progress",
                                 "waiting",
-                                "canceled"
+                                "cancelled"
                               ]
                             },
                             "startDate": {
@@ -8274,7 +8274,7 @@
                                 "completed",
                                 "in_progress",
                                 "waiting",
-                                "canceled"
+                                "cancelled"
                               ]
                             },
                             "startDate": {
@@ -9944,7 +9944,7 @@
                                 "completed",
                                 "in_progress",
                                 "waiting",
-                                "canceled"
+                                "cancelled"
                               ]
                             },
                             "startDate": {
@@ -11344,7 +11344,7 @@
                   "completed",
                   "in_progress",
                   "waiting",
-                  "canceled"
+                  "cancelled"
                 ]
               },
               "startDate": {
@@ -11520,7 +11520,7 @@
               "completed",
               "in_progress",
               "waiting",
-              "canceled"
+              "cancelled"
             ]
           },
           "startDate": {
@@ -12287,7 +12287,7 @@
                                 "completed",
                                 "in_progress",
                                 "waiting",
-                                "canceled"
+                                "cancelled"
                               ]
                             },
                             "startDate": {
@@ -14147,7 +14147,7 @@
                                 "completed",
                                 "in_progress",
                                 "waiting",
-                                "canceled"
+                                "cancelled"
                               ]
                             },
                             "startDate": {
