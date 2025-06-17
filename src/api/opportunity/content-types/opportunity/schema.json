@@ -32,12 +32,6 @@
     "notes": {
       "type": "text"
     },
-    "client": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::client.client",
-      "inversedBy": "opportunities"
-    },
     "interactions": {
       "type": "relation",
       "relation": "oneToMany",

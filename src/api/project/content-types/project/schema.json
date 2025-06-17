@@ -51,12 +51,6 @@
         "audios"
       ]
     },
-    "client": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::client.client",
-      "inversedBy": "projects"
-    },
     "invoices": {
       "type": "relation",
       "relation": "oneToMany",

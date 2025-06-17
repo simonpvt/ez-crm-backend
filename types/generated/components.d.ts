@@ -3,11 +3,11 @@ import type { Schema, Struct } from '@strapi/strapi';
 export interface CommonAddress extends Struct.ComponentSchema {
   collectionName: 'components_common_addresses';
   info: {
+    description: '';
     displayName: 'Address';
     icon: 'house';
   };
   attributes: {
-    addressComplement: Schema.Attribute.String;
     city: Schema.Attribute.String;
     country: Schema.Attribute.String;
     postalCode: Schema.Attribute.String;

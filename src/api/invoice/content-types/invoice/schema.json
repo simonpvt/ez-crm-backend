@@ -31,12 +31,6 @@
         "late"
       ]
     },
-    "client": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::client.client",
-      "inversedBy": "invoices"
-    },
     "project": {
       "type": "relation",
       "relation": "manyToOne",

@@ -28,12 +28,6 @@
     "content": {
       "type": "text"
     },
-    "client": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::client.client",
-      "inversedBy": "interactions"
-    },
     "opportunity": {
       "type": "relation",
       "relation": "manyToOne",

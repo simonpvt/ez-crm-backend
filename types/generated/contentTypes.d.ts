@@ -389,31 +389,61 @@ export interface ApiClientClient extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    email: Schema.Attribute.String & Schema.Attribute.Required;
-    interactions: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::interaction.interaction'
+    email: Schema.Attribute.String;
+    employeeCount: Schema.Attribute.String;
+    fullName: Schema.Attribute.String & Schema.Attribute.Required;
+    industry: Schema.Attribute.Enumeration<
+      [
+        'agriculture',
+        'automotive',
+        'banking',
+        'construction',
+        'consulting',
+        'education',
+        'energy',
+        'entertainment',
+        'fashion',
+        'finance',
+        'food_and_beverage',
+        'government',
+        'healthcare',
+        'hospitality',
+        'insurance',
+        'legal',
+        'logistics',
+        'manufacturing',
+        'marketing',
+        'media',
+        'mining',
+        'non_profit',
+        'pharmaceutical',
+        'real_estate',
+        'retail',
+        'software',
+        'technology',
+        'telecommunications',
+        'transportation',
+        'travel',
+        'utilities',
+        'other',
+      ]
     >;
-    invoices: Schema.Attribute.Relation<'oneToMany', 'api::invoice.invoice'>;
+    jobTitle: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::client.client'
     > &
       Schema.Attribute.Private;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
     notes: Schema.Attribute.Text;
-    opportunities: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::opportunity.opportunity'
-    >;
     phoneNumber: Schema.Attribute.String;
+    priority: Schema.Attribute.Enumeration<['low', 'medium', 'high', 'urgent']>;
     projects: Schema.Attribute.Relation<'oneToMany', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
-    tasks: Schema.Attribute.Relation<'oneToMany', 'api::task.task'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    website: Schema.Attribute.String;
   };
 }
 
@@ -429,7 +459,6 @@ export interface ApiInteractionInteraction extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    client: Schema.Attribute.Relation<'manyToOne', 'api::client.client'>;
     content: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -467,7 +496,6 @@ export interface ApiInvoiceInvoice extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    client: Schema.Attribute.Relation<'manyToOne', 'api::client.client'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -503,7 +531,6 @@ export interface ApiOpportunityOpportunity extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    client: Schema.Attribute.Relation<'manyToOne', 'api::client.client'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -543,7 +570,6 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
   };
   attributes: {
     budget: Schema.Attribute.Decimal;
-    client: Schema.Attribute.Relation<'manyToOne', 'api::client.client'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -595,7 +621,6 @@ export interface ApiTaskTask extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    client: Schema.Attribute.Relation<'manyToOne', 'api::client.client'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
