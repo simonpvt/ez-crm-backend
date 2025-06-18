@@ -33,12 +33,6 @@
       "relation": "manyToOne",
       "target": "api::opportunity.opportunity",
       "inversedBy": "interactions"
-    },
-    "project": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::project.project",
-      "inversedBy": "interactions"
     }
   }
 }

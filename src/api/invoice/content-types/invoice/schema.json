@@ -30,12 +30,6 @@
         "paid",
         "late"
       ]
-    },
-    "project": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::project.project",
-      "inversedBy": "invoices"
     }
   }
 }

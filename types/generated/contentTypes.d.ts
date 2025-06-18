@@ -34,10 +34,6 @@ export interface AdminApiToken extends Struct.CollectionTypeSchema {
         minLength: 1;
       }> &
       Schema.Attribute.DefaultTo<''>;
-    encryptedKey: Schema.Attribute.Text &
-      Schema.Attribute.SetMinMaxLength<{
-        minLength: 1;
-      }>;
     expiresAt: Schema.Attribute.DateTime;
     lastUsedAt: Schema.Attribute.DateTime;
     lifespan: Schema.Attribute.BigInteger;
@@ -478,7 +474,6 @@ export interface ApiInteractionInteraction extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::opportunity.opportunity'
     >;
-    project: Schema.Attribute.Relation<'manyToOne', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
     type: Schema.Attribute.Enumeration<['call', 'email', 'meeting', 'other']> &
       Schema.Attribute.Required;
@@ -514,7 +509,6 @@ export interface ApiInvoiceInvoice extends Struct.CollectionTypeSchema {
     number: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.Unique;
-    project: Schema.Attribute.Relation<'manyToOne', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
     sum: Schema.Attribute.Decimal & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
@@ -551,7 +545,6 @@ export interface ApiOpportunityOpportunity extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     notes: Schema.Attribute.Text;
     opportunityStatus: Schema.Attribute.Enumeration<['open', 'won', 'lost']>;
-    project: Schema.Attribute.Relation<'oneToOne', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
     sum: Schema.Attribute.Decimal;
     title: Schema.Attribute.String & Schema.Attribute.Required;
@@ -573,40 +566,44 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    budget: Schema.Attribute.Decimal;
+    client: Schema.Attribute.Relation<'oneToOne', 'api::client.client'>;
+    clientPrice: Schema.Attribute.Decimal;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    documents: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
-    endDate: Schema.Attribute.DateTime & Schema.Attribute.Required;
-    interactions: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::interaction.interaction'
-    >;
-    invoices: Schema.Attribute.Relation<'oneToMany', 'api::invoice.invoice'>;
+    deliverables: Schema.Attribute.Text;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    endDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    estimatedHours: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    hourlyRate: Schema.Attribute.Decimal & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::project.project'
     > &
       Schema.Attribute.Private;
-    opportunity: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::opportunity.opportunity'
-    >;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    notes: Schema.Attribute.Text;
+    objectives: Schema.Attribute.Text;
+    priority: Schema.Attribute.Enumeration<['low', 'medium', 'high', 'urgent']>;
     projectStatus: Schema.Attribute.Enumeration<
-      ['completed', 'in_progress', 'waiting', 'cancelled']
+      ['notStarted', 'inProgress', 'completed', 'onHold']
     > &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<'in_progress'>;
+      Schema.Attribute.DefaultTo<'notStarted'>;
     publishedAt: Schema.Attribute.DateTime;
-    startDate: Schema.Attribute.DateTime & Schema.Attribute.Required;
-    tasks: Schema.Attribute.Relation<'oneToMany', 'api::task.task'>;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
+    startDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    type: Schema.Attribute.Enumeration<
+      [
+        'webDevelopment',
+        'mobileApp',
+        'softwareDevelopment',
+        'design',
+        'marketing',
+        'consulting',
+        'other',
+      ]
+    > &
+      Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -640,7 +637,6 @@ export interface ApiTaskTask extends Struct.CollectionTypeSchema {
     priority: Schema.Attribute.Enumeration<['low', 'medium', 'high']> &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'low'>;
-    project: Schema.Attribute.Relation<'manyToOne', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
     taskStatus: Schema.Attribute.Enumeration<
       ['to_do', 'in_progress', 'completed', 'cancelled']

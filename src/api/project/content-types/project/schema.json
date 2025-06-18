@@ -11,69 +11,78 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "title": {
+    "name": {
       "type": "string",
       "required": true
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "webDevelopment",
+        "mobileApp",
+        "softwareDevelopment",
+        "design",
+        "marketing",
+        "consulting",
+        "other"
+      ],
+      "required": true
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ]
     },
     "projectStatus": {
       "type": "enumeration",
       "enum": [
+        "notStarted",
+        "inProgress",
         "completed",
-        "in_progress",
-        "waiting",
-        "cancelled"
+        "onHold"
       ],
-      "required": true,
-      "default": "in_progress"
+      "default": "notStarted"
+    },
+    "client": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::client.client"
+    },
+    "clientPrice": {
+      "type": "decimal"
+    },
+    "estimatedHours": {
+      "type": "decimal",
+      "required": true
+    },
+    "hourlyRate": {
+      "type": "decimal",
+      "required": true
     },
     "startDate": {
-      "type": "datetime",
+      "type": "date",
       "required": true
     },
     "endDate": {
-      "type": "datetime",
+      "type": "date",
       "required": true
     },
-    "budget": {
-      "type": "decimal"
+    "objectives": {
+      "type": "text"
     },
-    "documents": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+    "deliverables": {
+      "type": "text"
     },
-    "invoices": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::invoice.invoice",
-      "mappedBy": "project"
-    },
-    "opportunity": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::opportunity.opportunity",
-      "mappedBy": "project"
-    },
-    "tasks": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::task.task",
-      "mappedBy": "project"
-    },
-    "interactions": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::interaction.interaction",
-      "mappedBy": "project"
+    "notes": {
+      "type": "text"
     }
   }
 }

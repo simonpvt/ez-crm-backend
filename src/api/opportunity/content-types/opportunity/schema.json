@@ -37,12 +37,6 @@
       "relation": "oneToMany",
       "target": "api::interaction.interaction",
       "mappedBy": "opportunity"
-    },
-    "project": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::project.project",
-      "inversedBy": "opportunity"
     }
   }
 }

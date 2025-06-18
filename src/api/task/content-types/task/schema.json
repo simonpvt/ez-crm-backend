@@ -53,12 +53,6 @@
         "videos",
         "audios"
       ]
-    },
-    "project": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::project.project",
-      "inversedBy": "tasks"
     }
   }
 }
