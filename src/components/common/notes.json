@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_common_notes",
+  "info": {
+    "displayName": "Notes",
+    "icon": "file"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "text",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "config": {}
+}

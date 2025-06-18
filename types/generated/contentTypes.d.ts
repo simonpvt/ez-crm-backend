@@ -34,6 +34,10 @@ export interface AdminApiToken extends Struct.CollectionTypeSchema {
         minLength: 1;
       }> &
       Schema.Attribute.DefaultTo<''>;
+    encryptedKey: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     expiresAt: Schema.Attribute.DateTime;
     lastUsedAt: Schema.Attribute.DateTime;
     lifespan: Schema.Attribute.BigInteger;
@@ -373,7 +377,7 @@ export interface ApiClientClient extends Struct.CollectionTypeSchema {
   collectionName: 'clients';
   info: {
     description: '';
-    displayName: 'client';
+    displayName: 'Client';
     pluralName: 'clients';
     singularName: 'client';
   };
@@ -428,6 +432,10 @@ export interface ApiClientClient extends Struct.CollectionTypeSchema {
         'other',
       ]
     >;
+    interactions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::interaction.interaction'
+    >;
     jobTitle: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -435,7 +443,7 @@ export interface ApiClientClient extends Struct.CollectionTypeSchema {
       'api::client.client'
     > &
       Schema.Attribute.Private;
-    notes: Schema.Attribute.Text;
+    notes: Schema.Attribute.Relation<'oneToMany', 'api::note.note'>;
     phoneNumber: Schema.Attribute.String;
     priority: Schema.Attribute.Enumeration<['low', 'medium', 'high', 'urgent']>;
     projects: Schema.Attribute.Relation<'oneToMany', 'api::project.project'>;
@@ -450,8 +458,7 @@ export interface ApiClientClient extends Struct.CollectionTypeSchema {
 export interface ApiInteractionInteraction extends Struct.CollectionTypeSchema {
   collectionName: 'interactions';
   info: {
-    description: '';
-    displayName: 'interaction';
+    displayName: 'Interaction';
     pluralName: 'interactions';
     singularName: 'interaction';
   };
@@ -459,22 +466,20 @@ export interface ApiInteractionInteraction extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    content: Schema.Attribute.Text;
+    client: Schema.Attribute.Relation<'manyToOne', 'api::client.client'>;
+    content: Schema.Attribute.Text & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    date: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    date: Schema.Attribute.Date & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::interaction.interaction'
     > &
       Schema.Attribute.Private;
-    opportunity: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::opportunity.opportunity'
-    >;
     publishedAt: Schema.Attribute.DateTime;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     type: Schema.Attribute.Enumeration<['call', 'email', 'meeting', 'other']> &
       Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
@@ -517,6 +522,33 @@ export interface ApiInvoiceInvoice extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiNoteNote extends Struct.CollectionTypeSchema {
+  collectionName: 'notes';
+  info: {
+    displayName: 'Note';
+    pluralName: 'notes';
+    singularName: 'note';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    client: Schema.Attribute.Relation<'manyToOne', 'api::client.client'>;
+    content: Schema.Attribute.Text & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::note.note'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiOpportunityOpportunity extends Struct.CollectionTypeSchema {
   collectionName: 'opportunities';
   info: {
@@ -533,10 +565,6 @@ export interface ApiOpportunityOpportunity extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     deadline: Schema.Attribute.DateTime;
-    interactions: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::interaction.interaction'
-    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1162,6 +1190,7 @@ declare module '@strapi/strapi' {
       'api::client.client': ApiClientClient;
       'api::interaction.interaction': ApiInteractionInteraction;
       'api::invoice.invoice': ApiInvoiceInvoice;
+      'api::note.note': ApiNoteNote;
       'api::opportunity.opportunity': ApiOpportunityOpportunity;
       'api::project.project': ApiProjectProject;
       'api::task.task': ApiTaskTask;

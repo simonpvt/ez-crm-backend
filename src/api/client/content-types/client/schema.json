@@ -4,12 +4,13 @@
   "info": {
     "singularName": "client",
     "pluralName": "clients",
-    "displayName": "client",
+    "displayName": "Client",
     "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "fullName": {
       "type": "string",
@@ -90,16 +91,25 @@
     },
     "address": {
       "type": "component",
-      "repeatable": false,
-      "component": "common.address"
-    },
-    "notes": {
-      "type": "text"
+      "component": "common.address",
+      "repeatable": false
     },
     "projects": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::project.project"
+    },
+    "interactions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::interaction.interaction",
+      "mappedBy": "client"
+    },
+    "notes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::note.note",
+      "mappedBy": "client"
     }
   }
 }

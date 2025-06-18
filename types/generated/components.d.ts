@@ -15,10 +15,23 @@ export interface CommonAddress extends Struct.ComponentSchema {
   };
 }
 
+export interface CommonNotes extends Struct.ComponentSchema {
+  collectionName: 'components_common_notes';
+  info: {
+    displayName: 'Notes';
+    icon: 'file';
+  };
+  attributes: {
+    content: Schema.Attribute.Text & Schema.Attribute.Required;
+    date: Schema.Attribute.Date & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'common.address': CommonAddress;
+      'common.notes': CommonNotes;
     }
   }
 }
