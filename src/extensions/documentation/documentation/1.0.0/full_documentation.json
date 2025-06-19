@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-06-19T10:48:26.246Z"
+    "x-generation-date": "2025-06-19T21:05:46.028Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -11507,33 +11507,32 @@
               "category",
               "type",
               "description",
-              "date"
+              "date",
+              "fee"
             ],
             "type": "object",
             "properties": {
               "category": {
                 "type": "string",
                 "enum": [
-                  "software",
-                  "hardware",
-                  "subscriptions",
-                  "office",
-                  "transportation",
-                  "meals",
-                  "marketing",
-                  "training",
-                  "insurance",
+                  "client_payment",
+                  "client_expenses",
+                  "platform_payment",
+                  "refund",
+                  "equipment_purchase",
+                  "software_subscription",
+                  "professional_services",
+                  "training_education",
+                  "office_expenses",
+                  "travel_transport",
+                  "marketing_advertising",
+                  "business_meals",
+                  "insurance_fees",
                   "bank_fees",
-                  "accounting",
-                  "taxes",
-                  "utilities",
-                  "internet",
-                  "phone",
-                  "equipment",
-                  "supplies",
-                  "freelance_services",
-                  "travel",
-                  "coworking"
+                  "cashback",
+                  "taxes_contributions",
+                  "personal_transfer",
+                  "other"
                 ]
               },
               "amount": {
@@ -11564,6 +11563,10 @@
                   }
                 ],
                 "example": "string or id"
+              },
+              "fee": {
+                "type": "number",
+                "format": "float"
               },
               "locale": {
                 "type": "string"
@@ -11627,7 +11630,8 @@
           "category",
           "type",
           "description",
-          "date"
+          "date",
+          "fee"
         ],
         "properties": {
           "id": {
@@ -11639,26 +11643,24 @@
           "category": {
             "type": "string",
             "enum": [
-              "software",
-              "hardware",
-              "subscriptions",
-              "office",
-              "transportation",
-              "meals",
-              "marketing",
-              "training",
-              "insurance",
+              "client_payment",
+              "client_expenses",
+              "platform_payment",
+              "refund",
+              "equipment_purchase",
+              "software_subscription",
+              "professional_services",
+              "training_education",
+              "office_expenses",
+              "travel_transport",
+              "marketing_advertising",
+              "business_meals",
+              "insurance_fees",
               "bank_fees",
-              "accounting",
-              "taxes",
-              "utilities",
-              "internet",
-              "phone",
-              "equipment",
-              "supplies",
-              "freelance_services",
-              "travel",
-              "coworking"
+              "cashback",
+              "taxes_contributions",
+              "personal_transfer",
+              "other"
             ]
           },
           "amount": {
@@ -12391,6 +12393,10 @@
               }
             }
           },
+          "fee": {
+            "type": "number",
+            "format": "float"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -12442,26 +12448,24 @@
                 "category": {
                   "type": "string",
                   "enum": [
-                    "software",
-                    "hardware",
-                    "subscriptions",
-                    "office",
-                    "transportation",
-                    "meals",
-                    "marketing",
-                    "training",
-                    "insurance",
+                    "client_payment",
+                    "client_expenses",
+                    "platform_payment",
+                    "refund",
+                    "equipment_purchase",
+                    "software_subscription",
+                    "professional_services",
+                    "training_education",
+                    "office_expenses",
+                    "travel_transport",
+                    "marketing_advertising",
+                    "business_meals",
+                    "insurance_fees",
                     "bank_fees",
-                    "accounting",
-                    "taxes",
-                    "utilities",
-                    "internet",
-                    "phone",
-                    "equipment",
-                    "supplies",
-                    "freelance_services",
-                    "travel",
-                    "coworking"
+                    "cashback",
+                    "taxes_contributions",
+                    "personal_transfer",
+                    "other"
                   ]
                 },
                 "amount": {
@@ -12492,6 +12496,10 @@
                       "type": "string"
                     }
                   }
+                },
+                "fee": {
+                  "type": "number",
+                  "format": "float"
                 },
                 "createdAt": {
                   "type": "string",

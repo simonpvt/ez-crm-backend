@@ -10,43 +10,42 @@
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "category": {
       "type": "enumeration",
+      "required": true,
       "enum": [
-        "software",
-        "hardware",
-        "subscriptions",
-        "office",
-        "transportation",
-        "meals",
-        "marketing",
-        "training",
-        "insurance",
+        "client_payment",
+        "client_expenses",
+        "platform_payment",
+        "refund",
+        "equipment_purchase",
+        "software_subscription",
+        "professional_services",
+        "training_education",
+        "office_expenses",
+        "travel_transport",
+        "marketing_advertising",
+        "business_meals",
+        "insurance_fees",
         "bank_fees",
-        "accounting",
-        "taxes",
-        "utilities",
-        "internet",
-        "phone",
-        "equipment",
-        "supplies",
-        "freelance_services",
-        "travel",
-        "coworking"
-      ],
-      "required": true
+        "cashback",
+        "taxes_contributions",
+        "personal_transfer",
+        "other"
+      ]
     },
     "amount": {
       "type": "decimal"
     },
     "type": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "credit",
         "debit"
-      ],
-      "required": true
+      ]
     },
     "description": {
       "type": "text",
@@ -60,6 +59,11 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::client.client"
+    },
+    "fee": {
+      "type": "decimal",
+      "required": true,
+      "default": 0
     }
   }
 }

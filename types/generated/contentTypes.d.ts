@@ -693,26 +693,24 @@ export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
     amount: Schema.Attribute.Decimal;
     category: Schema.Attribute.Enumeration<
       [
-        'software',
-        'hardware',
-        'subscriptions',
-        'office',
-        'transportation',
-        'meals',
-        'marketing',
-        'training',
-        'insurance',
+        'client_payment',
+        'client_expenses',
+        'platform_payment',
+        'refund',
+        'equipment_purchase',
+        'software_subscription',
+        'professional_services',
+        'training_education',
+        'office_expenses',
+        'travel_transport',
+        'marketing_advertising',
+        'business_meals',
+        'insurance_fees',
         'bank_fees',
-        'accounting',
-        'taxes',
-        'utilities',
-        'internet',
-        'phone',
-        'equipment',
-        'supplies',
-        'freelance_services',
-        'travel',
-        'coworking',
+        'cashback',
+        'taxes_contributions',
+        'personal_transfer',
+        'other',
       ]
     > &
       Schema.Attribute.Required;
@@ -722,6 +720,9 @@ export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     date: Schema.Attribute.Date & Schema.Attribute.Required;
     description: Schema.Attribute.Text & Schema.Attribute.Required;
+    fee: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<0>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
