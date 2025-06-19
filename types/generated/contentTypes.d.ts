@@ -678,6 +678,65 @@ export interface ApiTaskTask extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiTransactionTransaction extends Struct.CollectionTypeSchema {
+  collectionName: 'transactions';
+  info: {
+    description: '';
+    displayName: 'Transaction';
+    pluralName: 'transactions';
+    singularName: 'transaction';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    amount: Schema.Attribute.Decimal;
+    category: Schema.Attribute.Enumeration<
+      [
+        'software',
+        'hardware',
+        'subscriptions',
+        'office',
+        'transportation',
+        'meals',
+        'marketing',
+        'training',
+        'insurance',
+        'bank_fees',
+        'accounting',
+        'taxes',
+        'utilities',
+        'internet',
+        'phone',
+        'equipment',
+        'supplies',
+        'freelance_services',
+        'travel',
+        'coworking',
+      ]
+    > &
+      Schema.Attribute.Required;
+    client: Schema.Attribute.Relation<'oneToOne', 'api::client.client'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date & Schema.Attribute.Required;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::transaction.transaction'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    type: Schema.Attribute.Enumeration<['credit', 'debit']> &
+      Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1194,6 +1253,7 @@ declare module '@strapi/strapi' {
       'api::opportunity.opportunity': ApiOpportunityOpportunity;
       'api::project.project': ApiProjectProject;
       'api::task.task': ApiTaskTask;
+      'api::transaction.transaction': ApiTransactionTransaction;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

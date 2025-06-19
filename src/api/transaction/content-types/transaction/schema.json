@@ -1,0 +1,65 @@
+{
+  "kind": "collectionType",
+  "collectionName": "transactions",
+  "info": {
+    "singularName": "transaction",
+    "pluralName": "transactions",
+    "displayName": "Transaction",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "software",
+        "hardware",
+        "subscriptions",
+        "office",
+        "transportation",
+        "meals",
+        "marketing",
+        "training",
+        "insurance",
+        "bank_fees",
+        "accounting",
+        "taxes",
+        "utilities",
+        "internet",
+        "phone",
+        "equipment",
+        "supplies",
+        "freelance_services",
+        "travel",
+        "coworking"
+      ],
+      "required": true
+    },
+    "amount": {
+      "type": "decimal"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "credit",
+        "debit"
+      ],
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "client": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::client.client"
+    }
+  }
+}
