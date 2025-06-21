@@ -10,6 +10,7 @@
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "title": {
       "type": "string",
@@ -24,35 +25,30 @@
     },
     "taskStatus": {
       "type": "enumeration",
+      "required": true,
+      "default": "to_do",
       "enum": [
         "to_do",
         "in_progress",
         "completed",
         "cancelled"
-      ],
-      "default": "to_do",
-      "required": true
+      ]
     },
     "priority": {
       "type": "enumeration",
+      "required": true,
+      "default": "low",
       "enum": [
         "low",
         "medium",
         "high"
-      ],
-      "default": "low",
-      "required": true
-    },
-    "documents": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
       ]
+    },
+    "project": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project.project",
+      "inversedBy": "tasks"
     }
   }
 }

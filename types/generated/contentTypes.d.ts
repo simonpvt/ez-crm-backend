@@ -620,6 +620,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       Schema.Attribute.DefaultTo<'notStarted'>;
     publishedAt: Schema.Attribute.DateTime;
     startDate: Schema.Attribute.Date & Schema.Attribute.Required;
+    tasks: Schema.Attribute.Relation<'oneToMany', 'api::task.task'>;
     type: Schema.Attribute.Enumeration<
       [
         'webDevelopment',
@@ -655,16 +656,13 @@ export interface ApiTaskTask extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     deadline: Schema.Attribute.DateTime & Schema.Attribute.Required;
     description: Schema.Attribute.Text;
-    documents: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios',
-      true
-    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::task.task'> &
       Schema.Attribute.Private;
     priority: Schema.Attribute.Enumeration<['low', 'medium', 'high']> &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'low'>;
+    project: Schema.Attribute.Relation<'manyToOne', 'api::project.project'>;
     publishedAt: Schema.Attribute.DateTime;
     taskStatus: Schema.Attribute.Enumeration<
       ['to_do', 'in_progress', 'completed', 'cancelled']
