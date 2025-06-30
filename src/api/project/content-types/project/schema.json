@@ -24,13 +24,29 @@
       "type": "enumeration",
       "required": true,
       "enum": [
-        "webDevelopment",
-        "mobileApp",
-        "softwareDevelopment",
-        "design",
-        "marketing",
-        "consulting",
-        "other"
+        "website",
+        "ecommerce",
+        "web_app",
+        "mobile_app",
+        "landing",
+        "blog",
+        "redesign",
+        "maintenance",
+        "features",
+        "seo",
+        "audit",
+        "api",
+        "integration",
+        "migration",
+        "hosting",
+        "branding",
+        "plugin",
+        "module",
+        "database",
+        "automation",
+        "nocode",
+        "advice",
+        "mvp"
       ]
     },
     "priority": {
@@ -40,17 +56,21 @@
         "medium",
         "high",
         "urgent"
-      ]
+      ],
+      "required": true,
+      "default": "low"
     },
     "projectStatus": {
       "type": "enumeration",
       "default": "notStarted",
       "enum": [
-        "notStarted",
-        "inProgress",
+        "not_started",
+        "in_progress",
         "completed",
-        "onHold"
-      ]
+        "on_hold",
+        "canceled"
+      ],
+      "required": true
     },
     "client": {
       "type": "relation",

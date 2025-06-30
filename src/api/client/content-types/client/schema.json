@@ -108,8 +108,7 @@
     "notes": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::note.note",
-      "mappedBy": "client"
+      "target": "api::note.note"
     }
   }
 }

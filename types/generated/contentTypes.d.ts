@@ -613,23 +613,44 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     name: Schema.Attribute.String & Schema.Attribute.Required;
     notes: Schema.Attribute.Text;
     objectives: Schema.Attribute.Text;
-    priority: Schema.Attribute.Enumeration<['low', 'medium', 'high', 'urgent']>;
-    projectStatus: Schema.Attribute.Enumeration<
-      ['notStarted', 'inProgress', 'completed', 'onHold']
+    priority: Schema.Attribute.Enumeration<
+      ['low', 'medium', 'high', 'urgent']
     > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'low'>;
+    projectStatus: Schema.Attribute.Enumeration<
+      ['not_started', 'in_progress', 'completed', 'on_hold', 'canceled']
+    > &
+      Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'notStarted'>;
     publishedAt: Schema.Attribute.DateTime;
     startDate: Schema.Attribute.Date & Schema.Attribute.Required;
     tasks: Schema.Attribute.Relation<'oneToMany', 'api::task.task'>;
     type: Schema.Attribute.Enumeration<
       [
-        'webDevelopment',
-        'mobileApp',
-        'softwareDevelopment',
-        'design',
-        'marketing',
-        'consulting',
-        'other',
+        'website',
+        'ecommerce',
+        'web_app',
+        'mobile_app',
+        'landing',
+        'blog',
+        'redesign',
+        'maintenance',
+        'features',
+        'seo',
+        'audit',
+        'api',
+        'integration',
+        'migration',
+        'hosting',
+        'branding',
+        'plugin',
+        'module',
+        'database',
+        'automation',
+        'nocode',
+        'advice',
+        'mvp',
       ]
     > &
       Schema.Attribute.Required;
