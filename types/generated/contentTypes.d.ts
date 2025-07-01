@@ -594,7 +594,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    client: Schema.Attribute.Relation<'oneToOne', 'api::client.client'>;
+    client: Schema.Attribute.Relation<'manyToOne', 'api::client.client'>;
     clientPrice: Schema.Attribute.Decimal;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

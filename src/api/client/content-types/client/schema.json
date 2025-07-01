@@ -97,7 +97,8 @@
     "projects": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::project.project"
+      "target": "api::project.project",
+      "mappedBy": "client"
     },
     "interactions": {
       "type": "relation",
